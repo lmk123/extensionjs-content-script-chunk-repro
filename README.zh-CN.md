@@ -3,6 +3,8 @@
 在 content script 中用 `import()` 加载模块，在 `extension dev` 下正常工作，但在
 `extension build` 下失败了。
 
+已提交到上游：[extension-js/extension.js#507](https://github.com/extension-js/extension.js/issues/507)。
+
 ## 复现环境
 
 - Extension.js 4.1.5

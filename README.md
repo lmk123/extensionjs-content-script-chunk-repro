@@ -3,6 +3,9 @@
 Loading a module with `import()` inside a content script works under `extension dev`,
 but fails under `extension build`.
 
+Reported upstream as
+[extension-js/extension.js#507](https://github.com/extension-js/extension.js/issues/507).
+
 ## Environment
 
 - Extension.js 4.1.5
