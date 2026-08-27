@@ -21,8 +21,8 @@
    | 控制台 | `[repro] chunk loaded and executed` | `ChunkLoadError: Loading chunk 11 failed.` |
    | 页面   | 绿色的 `chunk loaded ✓` 横幅          | 什么都没有                                 |
 
-4. 对照 dev 模式：`pnpm dev`，加载它产出的 `dist/chrome` 再打开任意页面——**同样的动态
-   import 完全正常**，控制台打印 `[repro] chunk loaded and executed`，绿色横幅也在。
+4. 对照 dev 模式：`pnpm dev` 后打开任意页面——**同样的动态 import 完全正常**，控制台打印
+   `[repro] chunk loaded and executed`，绿色横幅也在。
 5. Firefox 同理：`pnpm build:firefox` 后在 Firefox Nightly 里加载 `dist/firefox`，报错与
    Chrome 一模一样；`pnpm dev:firefox` 则同样正常。
 

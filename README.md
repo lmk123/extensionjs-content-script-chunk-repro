@@ -22,9 +22,9 @@ but fails under `extension build`.
    | console | `[repro] chunk loaded and executed` | `ChunkLoadError: Loading chunk 11 failed.` |
    | page    | green `chunk loaded ✓` banner       | nothing                                    |
 
-4. Compare with dev mode: run `pnpm dev`, load the `dist/chrome` it emits, and open any
-   page — **the exact same dynamic import works**, the console prints
-   `[repro] chunk loaded and executed` and the green banner is there.
+4. Compare with dev mode: run `pnpm dev` and open any page — **the exact same dynamic
+   import works**, the console prints `[repro] chunk loaded and executed` and the green
+   banner is there.
 5. Same story in Firefox: after `pnpm build:firefox`, load `dist/firefox` in Firefox
    Nightly and the error is identical to Chrome's; `pnpm dev:firefox` works fine.
 
