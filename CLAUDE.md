@@ -22,7 +22,7 @@ pnpm dev     # extension dev   --browser chrome  (bug does NOT reproduce here)
 ```
 
 There are no tests, no linter, and no typecheck script. Verification is manual: load
-`dist/chrome` as an unpacked extension, open any page, click, and read the console.
+`dist/chrome` as an unpacked extension, open any page, and read the console.
 `[repro] chunk loaded and executed` + a green banner = working; `ChunkLoadError` = the bug.
 
 **Both modes must be checked.** A change that fixes `build` but breaks `dev` (or vice

@@ -1,5 +1,5 @@
 // Stands in for the real payload (React, a UI bundle, a parser...): anything
-// too heavy to run on every page, so it is pulled in on first interaction.
+// too heavy to ship in the entry bundle, so it is pulled in with a dynamic import().
 export function mount() {
   console.log('[repro] chunk loaded and executed')
 

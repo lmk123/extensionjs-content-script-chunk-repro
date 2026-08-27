@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "extension dev --browser chrome",
-    "build": "extension build --browser chrome"
+    "build": "extension build --browser chrome",
+    "dev:firefox": "extension dev --browser firefox",
+    "build:firefox": "extension build --browser firefox"
   },
   "devDependencies": {
     "extension": "4.1.5"
-  }
+  },
+  "packageManager": "pnpm@11.24.0"
 }
