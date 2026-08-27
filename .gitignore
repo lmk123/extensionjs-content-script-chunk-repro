@@ -3,3 +3,6 @@ dist/
 
 # extension.js local session state
 .extension-js
+
+# IDE
+.idea/
