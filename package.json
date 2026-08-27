@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "extension dev",
-    "build": "extension build"
+    "dev": "extension dev --browser chrome",
+    "build": "extension build --browser chrome"
   },
   "devDependencies": {
     "extension": "4.1.5"

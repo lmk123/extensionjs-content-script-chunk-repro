@@ -12,10 +12,10 @@ which dynamic-imports on click) and `src/content/heavy.ts` (the lazily loaded mo
 ## Reproduce
 
 ```bash
-pnpm install && pnpm build      # or: npm install && npm run build
+pnpm install && pnpm build
 ```
 
-Load `dist/chromium` as an unpacked extension, open any page, click anywhere.
+Load `dist/chrome` as an unpacked extension, open any page, click anywhere.
 
 |         | expected                            | actual (production build)                  |
 | ------- | ----------------------------------- | ------------------------------------------ |
