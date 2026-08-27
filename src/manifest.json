@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "content-script-chunk-repro",
+  "version": "1.0.0",
+  "description": "Minimal repro: dynamic import() inside a content script works in `extension dev` but fails in `extension build`.",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.ts"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["*.js", "content_scripts/*.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
