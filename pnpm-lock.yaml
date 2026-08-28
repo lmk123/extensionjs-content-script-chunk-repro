@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       extension:
-        specifier: 4.1.5
-        version: 4.1.5(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(svelte@5.56.10)(webpack@5.109.2(postcss@8.5.23))
+        specifier: 4.1.9
+        version: 4.1.9(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(svelte@5.56.10)(webpack@5.109.2(postcss@8.5.23))
 
 packages:
 
@@ -682,8 +682,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  browser-extension-manifest-fields@2.2.9:
-    resolution: {integrity: sha512-1s3ISUcO4A+Ml2842+xV5fNmRFqv4y7D6WktnoOdUu4b4VfmOrdcfrOftLI3WTkSaxLpUJX5ahA8Ic7YuFAdXw==}
+  browser-extension-manifest-fields@2.3.0:
+    resolution: {integrity: sha512-yFOqIiJzs+zYEYew16inbFhpR37Vl+YkqIbepVPRikXPLYPgfcgkoylpJ/tswBKwzd0diUhm9+SlI+iEX4smgg==}
     engines: {node: '>=18'}
 
   browserslist@4.28.8:
@@ -923,12 +923,12 @@ packages:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
 
-  extension-create@4.1.5:
-    resolution: {integrity: sha512-dntPn304AiirvEEu0/Xn059GKWDDhno9xRWPzpArvzJgSZEyjxtmgiPQK3DzVv80DcWVIYUQn6DBV6IYWcmEAg==}
+  extension-create@4.1.9:
+    resolution: {integrity: sha512-Riy7YWvSlIBrwDajeKBXLn+lpeyQoi9gWsKgZI+Mgv5hsLDM0bjqoYzAonPxKtc/uU/116yPlwki5HMfE7x8xQ==}
     engines: {node: '>=22.12'}
 
-  extension-develop@4.1.5:
-    resolution: {integrity: sha512-GKB9q7ddsQ7PcRNtXTHJImgs5QSYBuDaW3o5PTzwJHRTmEp2HIXvDS5Xr7fzOy7ZQhbeaxSSjlxJE+CGLbBTGQ==}
+  extension-develop@4.1.9:
+    resolution: {integrity: sha512-EBQyTUO6uPWgHYKhkQ6AasfUVepOckzQEI83uD2TCW6JF8uadt2QnEGyt8MjxE52nw+5MTOoy35xcYxckiT3Pg==}
     engines: {node: '>=22.12'}
 
   extension-from-store@0.2.5:
@@ -936,12 +936,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@4.1.5:
-    resolution: {integrity: sha512-jdb/FgMiEFgo3b72ckEuw6J7yIKTcSiZJ/+6w/YhCRBiAl3R+DBWpqqIqgoz7q12+WRHhSsWzjK5QesHaADSpA==}
+  extension-install@4.1.9:
+    resolution: {integrity: sha512-xjaPorWruIQb/q287wm3YYylHIhHVZztpuRzy/C78GWgs8RkjOMoabSy85aHC+ODV+nhoWpOIhDZromnEMPa3A==}
     engines: {node: '>=22.12'}
 
-  extension@4.1.5:
-    resolution: {integrity: sha512-aA/JWp9+ZHtCU9+zuLWhdceh/leh4+LIkyAHQFYNZQ8aIVT7yYq5Jc8cswT1F5OPZeDR1SxU5N5myPOR/QN62w==}
+  extension@4.1.9:
+    resolution: {integrity: sha512-SjgrkV/IC+5Lw84+sq2KNYIZv5OIDeCJa7NX6ZW/NJ7PFD+mEc6JZqsY803OeGKWTnAnG4wHlHBV+6sk8aKrwQ==}
     engines: {node: '>=22.12'}
     hasBin: true
 
@@ -2421,7 +2421,7 @@ snapshots:
     dependencies:
       which: 6.0.1
 
-  browser-extension-manifest-fields@2.2.9: {}
+  browser-extension-manifest-fields@2.3.0: {}
 
   browserslist@4.28.8:
     dependencies:
@@ -2615,7 +2615,7 @@ snapshots:
 
   events@3.3.0: {}
 
-  extension-create@4.1.5(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1):
+  extension-create@4.1.9(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1):
     dependencies:
       axios: 1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       cross-spawn: 7.0.6
@@ -2627,7 +2627,7 @@ snapshots:
       - debug
       - supports-color
 
-  extension-develop@4.1.5(svelte@5.56.10)(webpack@5.109.2(postcss@8.5.23)):
+  extension-develop@4.1.9(svelte@5.56.10)(webpack@5.109.2(postcss@8.5.23)):
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.27.3)
       '@prefresh/utils': 1.2.1
@@ -2637,7 +2637,7 @@ snapshots:
       '@rspack/plugin-react-refresh': 2.0.2(@rspack/core@2.2.0)(react-refresh@0.18.0)
       '@vue/compiler-sfc': 3.5.26
       acorn: 8.18.0
-      browser-extension-manifest-fields: 2.2.9
+      browser-extension-manifest-fields: 2.3.0
       case-sensitive-paths-webpack-plugin: 2.4.0
       content-security-policy-parser: 0.6.0
       dotenv: 17.4.2
@@ -2683,12 +2683,12 @@ snapshots:
     dependencies:
       fflate: 0.8.3
 
-  extension-install@4.1.5:
+  extension-install@4.1.9:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@4.1.5(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(svelte@5.56.10)(webpack@5.109.2(postcss@8.5.23)):
+  extension@4.1.9(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(svelte@5.56.10)(webpack@5.109.2(postcss@8.5.23)):
     dependencies:
       brave-location: 3.1.1
       chrome-location2: 4.1.1
@@ -2696,9 +2696,9 @@ snapshots:
       commander: 15.0.0
       cross-spawn: 7.0.6
       edge-location: 2.3.1
-      extension-create: 4.1.5(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
-      extension-develop: 4.1.5(svelte@5.56.10)(webpack@5.109.2(postcss@8.5.23))
-      extension-install: 4.1.5
+      extension-create: 4.1.9(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      extension-develop: 4.1.9(svelte@5.56.10)(webpack@5.109.2(postcss@8.5.23))
+      extension-install: 4.1.9
       firefox-location2: 3.1.1
       librewolf-location: 1.2.1
       opera-location2: 2.1.1

@@ -10,7 +10,7 @@
     "build:firefox": "extension build --browser firefox"
   },
   "devDependencies": {
-    "extension": "4.1.5"
+    "extension": "4.1.9"
   },
   "packageManager": "pnpm@11.24.0"
 }
