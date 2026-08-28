@@ -1,18 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "content-script-chunk-repro",
+  "name": "content-script-css-404-repro",
   "version": "1.0.0",
-  "description": "Minimal repro: dynamic import() inside a content script works in `extension dev` but fails in `extension build`.",
+  "description": "Minimal repro: `extension build` makes the content script fetch a sibling .css that the project never had.",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content/scripts.ts"]
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["*.js", "content_scripts/*.js"],
-      "matches": ["<all_urls>"]
     }
   ]
 }

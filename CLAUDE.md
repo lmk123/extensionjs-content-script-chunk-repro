@@ -4,15 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A **minimal bug reproduction**, not a product. It demonstrated that a dynamic `import()`
-inside an Extension.js content script worked under `extension dev` but always failed under
-`extension build`. **Extension.js fixed this in 4.1.9**, which is the version pinned here;
-the repro now passes in both modes. Read `README.md` first — it holds the full root-cause
-analysis and the before/after status.
+A **minimal bug reproduction**, not a product. It shows that Extension.js's content-script
+runtime unconditionally fetches a sibling `<entry>.css` — here
+`content_scripts/content-0.css` — even though this project contains no CSS and the build
+emits no `.css` file. Read `README.md` first; it holds the root-cause snippet and the
+verified before/after behaviour.
 
-Because it is a repro, keep it minimal. Do not add features, dependencies, abstractions,
-or files that are not needed to show the bug or its fix. `src/content/heavy.ts` is a
-deliberate stand-in for a real payload; it should stay trivial.
+Because it is a repro, keep it minimal. Do not add features, dependencies, abstractions, or
+files that are not needed to show the bug. In particular **do not add a stylesheet** — the
+absence of CSS is the point, and importing one does not silence the request anyway (Extension.js
+inlines CSS as a `data:` module and still fetches the missing sibling).
+
+Careful with comments in `src/`: Extension.js scans source text for CSS-ish string literals,
+so writing something like an example `import './x.css'` inside a comment makes the build emit
+a spurious "CSS asset not found on disk" warning.
 
 ## Commands
 
@@ -23,49 +28,38 @@ pnpm dev     # extension dev   --browser chrome
 ```
 
 There are no tests, no linter, and no typecheck script. Verification is manual: load
-`dist/chrome` as an unpacked extension, open any page, and read the console.
-`[repro] chunk loaded and executed` + a green banner = working; `ChunkLoadError` = the bug
-is back. A `Denying load of .../content-0.css` error is unrelated noise from Extension.js's
-runtime and is expected.
+`dist/chrome` as an unpacked extension, open any page, and read the console. A
+`Denying load of chrome-extension://<id>/content_scripts/content-0.css` error means the bug
+is still present; a clean console (apart from this repo's own `[repro] …` log) means it is
+fixed.
 
-**Both modes must be checked** whenever the Extension.js version changes — the original bug
-was precisely a divergence between `build` and `dev`.
+**Both modes must be checked** whenever the Extension.js version changes. They fail
+differently: `dev` reaches the file and gets `ERR_FILE_NOT_FOUND`, `build` is blocked before
+that because the production manifest declares no `web_accessible_resources`.
 
 Chrome 137+ ignores the `--load-extension` command-line flag, so a scripted check needs
-`--enable-unsafe-extension-debugging` plus the CDP `Extensions.loadUnpacked` command. Under
-`extension dev`, `extension dev --allow-control` + `extension inspect --with-console` reads
-the page and its console directly.
+`--enable-unsafe-extension-debugging` plus the CDP `Extensions.loadUnpacked` command. CDP
+reports the blocked production request as `chrome-extension://invalid/` — to see the real
+path, add `content_scripts/*.css` to `web_accessible_resources` in the *built* manifest and
+re-run. `extension dev` launches its own Chrome on `--remote-debugging-port=9222`, so a dev-mode
+check can just attach to that.
 
 ## Layout
 
 - `src/manifest.json` — MV3 manifest; Extension.js consumes `.ts` paths here directly
   (`content_scripts[].js` points at `content/scripts.ts`) and rewrites them at build time.
-- `src/content/scripts.ts` — the content script entry. Extension.js **calls its default
-  export** on injection and calls the returned function on unload/HMR; this is an
-  Extension.js convention, not a webpack one.
-- `src/content/heavy.ts` — the lazily imported chunk.
+- `src/content/scripts.ts` — the content script entry, and the only source file. Extension.js
+  **calls its default export** on injection and calls the returned function on unload/HMR;
+  this is an Extension.js convention, not a webpack one.
 
-`dist/` and `.extension-js/` are generated and gitignored; never edit them by hand.
+`dist/` and `.extension-js/` are generated and gitignored; never edit them by hand. Note that
+`extension dev` writes into `dist/chrome` too, overwriting the production build.
 
-## The original bug (4.1.5) and its fix (4.1.9)
+## History
 
-On 4.1.5 production builds left rspack's default chunk loader in place, which injects a
-`<script>` into the host page. That runs in the **main world**, so the chunk's
-`self.rspackChunk_<name>.push(...)` never reached the content script's **isolated world**,
-and webpack rejected. `extension dev` avoided this only because `WebExtensionPlugin` (which
-owns `__webpack_require__.l`) is installed via `ReloadPlugin`, which returned early when
-`mode === 'production'`.
-
-4.1.9 emits the fix in the production bundle itself: `__webpack_require__.l` is overridden
-with a native `import()` (falling back to `<script>` injection only on failure), the
-manifest gains `web_accessible_resources: ["*.js", "content_scripts/*.js"]`, and
-`publicPath` is resolved at runtime via `chrome.runtime.getURL('/')`.
-
-## Branches
-
-`main` tracks the current Extension.js release and now passes. The old workaround —
-swapping `__webpack_require__.l` for a native dynamic import
-(`src/content/installChunkLoader.ts`) — lives on
-`origin/workaround/native-esm-chunk-loader`; it is obsolete on 4.1.9 and stays unmerged as
-a record of the fix. To reproduce the original failure, pin `extension` to 4.1.5. Add
-experiments as separate branches.
+This repo previously reproduced a different bug — a dynamic `import()` in a content script
+failing under `extension build`
+([extension-js/extension.js#507](https://github.com/extension-js/extension.js/issues/507),
+fixed in 4.1.9). That repro and its workaround branch are still in the git history: see the
+tag `repro/chunk-load-error` and the branch `origin/workaround/native-esm-chunk-loader`. The
+`.css` request documented here was the leftover "unrelated noise" noted in that repro's README.

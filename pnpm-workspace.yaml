@@ -1,0 +1,6 @@
+minimumReleaseAgeExclude:
+  - browser-extension-manifest-fields@2.3.0
+  - extension-create@4.1.9
+  - extension-develop@4.1.9
+  - extension-install@4.1.9
+  - extension@4.1.9
